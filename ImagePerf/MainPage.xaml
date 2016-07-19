@@ -7,7 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <StackPanel RelativePanel.Below="ImagePicker" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"  >
+                <GridView>
+                    <local:LabelInput Label="Image Url" Value="{x:Bind ImageUrl, Mode=TwoWay}"></local:LabelInput>
+                    <local:LabelInput Label="Decode Height" Value="{x:Bind DecodeHeight, Mode=TwoWay}"></local:LabelInput>
+                    <local:LabelInput Label="Decode Width" Value="{x:Bind DecodeWidth, Mode=TwoWay}"></local:LabelInput>
+                    <Button Click="Button_Click" FontSize="16">Update</Button>
+                    <CheckBox IsChecked="{x:Bind Cache, Mode=TwoWay}">Use Cache</CheckBox>
+                </GridView>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Scaled</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1">Source</TextBlock>
+                    <Image x:Name="Scaled" Stretch="UniformToFill" Grid.Column="0" Grid.Row="1">
+                    </Image>
+                    <Image x:Name="Normal" Stretch="UniformToFill" Grid.Column="1" Grid.Row="1">
+                    </Image>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </RelativePanel>
 </Page>
